@@ -10,14 +10,14 @@ function myTweets() {
     var twitterKeys = require('./keys.js');
     var Twitter = require('twitter');
     var client = new Twitter({
-        // consumer_key: twitterKeys.consumer_key,
-        // consumer_secret: twitterKeys.consumer_secret,
-        // access_token_key: twitterKeys.access_token_key,
-        // access_token_secret: twitterKeys.access_token_secret
-        consumer_key: 'fIUCbjPenAs9hhw2ajQu6D7id',
-        consumer_secret: '8jfKltb0HUO0WCqZx8NftaLJCrsY3AmRVZ0yjnLP3LdwNI8Y4u',
-        access_token_key: '	926079074677743616-eNosvk1JkCPbh5DqPQbm0MU6yZOMgX2',
-        access_token_secret: 'WglG8Sz9TWUStmoVVck4Gndv1aJD1RLGYpSqLmWNRQIKn',
+        consumer_key: twitterKeys.consumer_key,
+        consumer_secret: twitterKeys.consumer_secret,
+        access_token_key: twitterKeys.access_token_key,
+        access_token_secret: twitterKeys.access_token_secret
+        // consumer_key: 'fIUCbjPenAs9hhw2ajQu6D7id',
+        // consumer_secret: '8jfKltb0HUO0WCqZx8NftaLJCrsY3AmRVZ0yjnLP3LdwNI8Y4u',
+        // access_token_key: '926079074677743616-eNosvk1JkCPbh5DqPQbm0MU6yZOMgX2',
+        // access_token_secret: 'WglG8Sz9TWUStmoVVck4Gndv1aJD1RLGYpSqLmWNRQIKn',
     });
 
     var params = {
@@ -25,6 +25,10 @@ function myTweets() {
         count: 20
     };
     client.get('statuses/user_timeline', params, function (error, tweets, response) {
+        if (error) {
+            console.log(error);
+            return;
+        }
         if (!error) {
             console.log("tweets");
             for (i = 0; i < tweets.length; i++) {
