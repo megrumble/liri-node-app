@@ -98,8 +98,12 @@ function movieThis() {
         myMovie = command2;
     };
 
-    var url = 'http://www.omdbapi.com/?t=' + myMovie + '&y=&plot=long&tomatoes=true&r=json';
+    var url = 'http://www.omdbapi.com/?t=' + myMovie + '&y=&plot=long&tomatoes=true&r=json&apikey=40e9cece';
     request(url, function (error, response, body) {
+        if (error) {
+            console.log(error);
+            return;
+        }
         if (!error && response.statusCode == 200) {
             console.log("Title: " + JSON.parse(body)["Title"]);
             console.log("Year: " + JSON.parse(body)["Year"]);
